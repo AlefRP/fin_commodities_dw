@@ -72,7 +72,24 @@ Certifique-se de configurar o caminho correto para o ambiente Python desejado (q
 
   - Também é possível definir variaveis, pools e conexões no arquivo no arquivo `airflow_settings.yaml`. Foram criadas algumas conexões apenas para demonstração, elas não são utilizadas no projeto, com execção das pools que de fato são utilizadas.
 
-- **Rodar a DAG Principal**: Navegue até o painel do Airflow e ative a DAG chamada `api_commodities`. Esta DAG é responsável por automatizar a coleta, transformação e armazenamento dos dados.
+O Airflow cria um Data Warehouse modelado em **SQLAlchemy** utilizando o padrão **Star Schema**, com as seguintes tabelas:
+
+- **`dim_calendario`**
+- **`dim_commodity`**
+- **`dim_mercado`**
+- **`fato_precos`**
+
+Um **Branch Operator** verifica se as tabelas já existem no banco de dados. Caso existam, as tasks de carga de dados são executadas diretamente. Caso contrário, a criação das tabelas é feita antes de continuar.
+
+Os modelos do SQLAlchemy estão localizados em: `dags/groups/models`.
+
+## Coleta e Carga de Dados
+
+1. **Scraper de Tickers**
+   - Um script utilizando **Beautiful Soup** realiza o scraper dos tickers de commodities diretamente do Yahoo Finance, carregando os resultados na tabela `dim_commodity`.
+
+2. **Coleta de Dados**
+   - Um segundo script utiliza os tickers extraídos para consultar a **API do Yahoo** e carregar os preços das commodities na tabela `fato_precos`.
 
 ## Testes
 

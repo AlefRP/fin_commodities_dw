@@ -39,7 +39,7 @@ O comando para iniciar o ambiente é:
 
 - **Testes Automatizados**: Foi realizada a simulação de um teste automatizado para verificar a execução da DAG. Utilizamos o `pytest` para validar a execução das funções e garantir que o pipeline funcionasse conforme o esperado.
 
-## Links Úteis
+## Documentação e Governança
 
 - [Requisitos do Desafio](docs/requisitos_desafio.md): Detalhes sobre os requisitos do desafio de seleção da MERX.
 - [Governança de Dados](docs/governanca_dados.md): Detalhes sobre as práticas de governança de dados implementadas no projeto, incluindo controle de qualidade, auditoria e segurança.
