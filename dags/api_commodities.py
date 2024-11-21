@@ -98,30 +98,43 @@ def api_commodities():
         
         criar_dim_task >> criar_fato_task
 
-    @task_group(group_id='carregar_dados')
-    def carregar_dados(conn_str: str):
-        scraper_tickers_commodities(conn_str)
-        carregar_dimensoes(conn_str)
-        carregar_fato_precos(conn_str)
-        @custom_task.empty(task_id="carregar_dados_final", trigger_rule="none_failed_or_skipped")
-        def finalizar_carregar_dados():
-            """Finalizador do grupo carregar_dados."""
-            pass
-        return finalizar_carregar_dados()
+        return criar_fato_task
 
-    # Criação das tarefas e grupos
+    @custom_task.empty(trigger_rule="none_failed_or_skipped")
+    def continuar_fluxo():
+        """Continua o fluxo após a verificação das tabelas."""
+        pass
+
+    @custom_task.empty(trigger_rule="none_failed_or_skipped")
+    def finalizar_carregar_dados():
+        """Finalizador do carregamento de dados."""
+        pass
+
+    # Definindo as tarefas principais
     inicio_task = inicio()
     fim_task = fim()
     conn_str_task = obter_conexao()
     verificar_tabelas_task = verificar_tabelas_existentes(conn_str_task)
     tabelas_existem_task = tabelas_existem()
     criar_tabelas_task = criar_tabelas(conn_str_task)
-    carregar_dados_task = carregar_dados(conn_str_task)
+    continuar_fluxo_task = continuar_fluxo()
+    finalizar_carregar_dados_task = finalizar_carregar_dados()
+
+    # Definindo as tarefas de carregamento de dados
+    scraper_task = scraper_tickers_commodities(conn_str_task)
+    carregar_dim_task = carregar_dimensoes(conn_str_task)
+    carregar_fato_task = carregar_fato_precos(conn_str_task)
 
     # Definindo as dependências
     inicio_task >> conn_str_task >> verificar_tabelas_task
     verificar_tabelas_task >> [tabelas_existem_task, criar_tabelas_task]
-    tabelas_existem_task >> carregar_dados_task
-    criar_tabelas_task >> carregar_dados_task >> fim_task
+
+    # Unificando os fluxos após o branching
+    tabelas_existem_task >> continuar_fluxo_task
+    criar_tabelas_task >> continuar_fluxo_task
+
+    # Continuando o fluxo principal
+    continuar_fluxo_task >> scraper_task
+    scraper_task >> carregar_dim_task >> carregar_fato_task >> finalizar_carregar_dados_task >> fim_task
 
 dag = api_commodities()
