@@ -24,7 +24,6 @@ Este documento fornece instruções detalhadas sobre como configurar o ambiente 
    - Inicialize o banco de dados do Airflow e inicie o servidor local:
 
      ```bash
-     astro dev init
      astro dev start
      ```
 

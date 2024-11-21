@@ -25,11 +25,15 @@ Este projeto foi desenvolvido como solução para o desafio de seleção da MERX
 
 - **Astro CLI**: Utilizamos o Astro CLI para gerenciar e executar o projeto localmente.  Para instruções de instalação do Astro CLI, consulte [este link](https://www.astronomer.io/docs/astro/cli/install-cli/). Também é necessario ter o Docker instalado.
 
+> **Nota**: Após instalar o Astro CLI, caso o comando `astro` não seja reconhecido pelo terminal, feche o terminal e a IDE, e abra-os novamente para que as alterações no PATH sejam aplicadas corretamente.
+
 O comando para iniciar o ambiente é:
 
   ```bash
   astro dev start
   ```
+
+> **Nota**: Por padrão, o Airflow no Astro CLI utiliza o PostgreSQL como backend e a Metabase opera na porta `5432`, redirecionando para o host. Caso já exista um serviço PostgreSQL ativo no host, será necessário desligá-lo antes de iniciar o Airflow, para evitar conflitos de porta que podem impedir a inicialização do Airflow.
 
 - **Servidor PostgreSQL Adicional**: Foi configurado um servidor PostgreSQL adicional, além do banco de metadados do Airflow, para armazenar o Data Warehouse. Este servidor está rodando em uma porta distinta para evitar conflitos.
 
