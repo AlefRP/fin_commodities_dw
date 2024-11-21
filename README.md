@@ -4,6 +4,8 @@
 
 Este projeto foi desenvolvido como solução para o desafio de seleção da MERX, envolvendo a criação de um pipeline de ingestão, transformação e armazenamento de dados em um Data Warehouse utilizando Apache Airflow, Python, Docker, PostgreSQL, as bibliotecas `yfinance`, `requests`, `bs4`, `sqlalchemy` e `pandas`. Abaixo estão correlacionados os requisitos do desafio e como foram atendidos pela solução proposta.
 
+![Estrutura do Projeto](docs/imgs/projeto.svg)
+
 O Data Warehouse foi modelado em **SQLAlchemy** utilizando o padrão **Star Schema**, com as seguintes tabelas:
 
 - **`dim_calendario`**
@@ -60,4 +62,3 @@ O comando para iniciar o ambiente é:
 - [Requisitos do Desafio](docs/requisitos_desafio.md): Detalhes sobre os requisitos do desafio de seleção da MERX.
 - [Governança de Dados](docs/governanca_dados.md): Detalhes sobre as práticas de governança de dados implementadas no projeto, incluindo controle de qualidade, auditoria e segurança.
 - [Execução do Projeto](docs/execucao_projeto.md): Instruções detalhadas sobre como executar o projeto e configurar o ambiente.
-
