@@ -70,7 +70,7 @@ Certifique-se de configurar o caminho correto para o ambiente Python desejado (q
 
 - **Rodar a DAG Principal**: Navegue até o painel do Airflow e ative a DAG chamada `api_commodities`. Esta DAG é responsável por automatizar a coleta, transformação e armazenamento dos dados.
 
-  - Também é possível definir variaveis, pools e conexões no arquivo no arquivo `airflow_settings.yaml`. Foram criadas algumas conexões apenas para demonstração, elas não são utilizadas no projeto.
+  - Também é possível definir variaveis, pools e conexões no arquivo no arquivo `airflow_settings.yaml`. Foram criadas algumas conexões apenas para demonstração, elas não são utilizadas no projeto, com execção das pools que de fato são utilizadas.
 
 - **Rodar a DAG Principal**: Navegue até o painel do Airflow e ative a DAG chamada `api_commodities`. Esta DAG é responsável por automatizar a coleta, transformação e armazenamento dos dados.
 

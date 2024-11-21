@@ -57,11 +57,11 @@ def api_commodities():
         conn = configurar_conexao()
         return conn
 
-    @task.branch(task_id="verificar_tabelas_existentes")
+    @task.branch()
     def verificar_tabelas_existentes(conn_str: str):
         """
         Verifica a existência das tabelas no banco de dados e decide o fluxo.
-        Retorna a ID da próxima tarefa a ser executada.
+        Retorna o ID da próxima tarefa a ser executada.
         """
         tabelas = ['dim_calendario', 'dim_commodity', 'dim_mercado', 'fato_precos']
         try:
@@ -82,7 +82,7 @@ def api_commodities():
             if len(tabelas_existentes) == len(tabelas):
                 return "tabelas_existem"
             else:
-                return "criar_tabelas"
+                return "criar_tabelas.criar_dim"
         except Exception as e:
             raise RuntimeError(f"Erro ao verificar tabelas: {e}")
 
@@ -97,8 +97,6 @@ def api_commodities():
         criar_fato_task = criar_tabela_fato_precos(conn_str)
         
         criar_dim_task >> criar_fato_task
-
-        return criar_fato_task
 
     @custom_task.empty(trigger_rule="none_failed_or_skipped")
     def continuar_fluxo():
@@ -118,7 +116,6 @@ def api_commodities():
     criar_tabelas_task = criar_tabelas(conn_str_task)
     continuar_fluxo_task = continuar_fluxo()
     finalizar_carregar_dados_task = finalizar_carregar_dados()
-
 
     scraper_task = scraper_tickers_commodities(conn_str_task)
     carregar_dim_task = carregar_dimensoes(conn_str_task)

@@ -14,7 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-@task.python
+@task.python(pool='scraping_pool')
 def obter_lista_commodities():
     """
     Realiza scraping no Yahoo Finance para obter a lista de commodities.
@@ -59,7 +59,7 @@ def obter_lista_commodities():
         logger.error(f"Erro inesperado ao processar a página: {e}")
         raise
 
-@ task.python(do_xcom_push=False)
+@ task.python(do_xcom_push=False, pool='scraping_pool')
 def carregar_dim_commodity(commodities: list, conn_str: str):
     """
     Insere os dados de commodities na tabela `dim_commodity`.
