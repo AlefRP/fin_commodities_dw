@@ -1,0 +1,17 @@
+services:
+  postgres-dw-commodities:
+    image: postgres:17.1-alpine
+    container_name: pstg-dw-commodities
+    ports:
+      - "5434:5434"
+    environment:
+      POSTGRES_USER: user_dw
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: commodities_dw
+      PGPORT: 5434
+    volumes:
+      - postgres_dw_data:/var/lib/postgresql/data
+      - ./include/sql/permiss_commodities_dw.sql:/docker-entrypoint-initdb.d/permiss_commodities_dw.sql
+
+volumes:
+  postgres_dw_data:
