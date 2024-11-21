@@ -2,3 +2,4 @@ sql/
 addins/
 groups/
 templates/
+__init__.py

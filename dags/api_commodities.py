@@ -110,7 +110,6 @@ def api_commodities():
         """Finalizador do carregamento de dados."""
         pass
 
-    # Definindo as tarefas principais
     inicio_task = inicio()
     fim_task = fim()
     conn_str_task = obter_conexao()
@@ -120,7 +119,7 @@ def api_commodities():
     continuar_fluxo_task = continuar_fluxo()
     finalizar_carregar_dados_task = finalizar_carregar_dados()
 
-    # Definindo as tarefas de carregamento de dados
+
     scraper_task = scraper_tickers_commodities(conn_str_task)
     carregar_dim_task = carregar_dimensoes(conn_str_task)
     carregar_fato_task = carregar_fato_precos(conn_str_task)
@@ -128,12 +127,10 @@ def api_commodities():
     # Definindo as dependências
     inicio_task >> conn_str_task >> verificar_tabelas_task
     verificar_tabelas_task >> [tabelas_existem_task, criar_tabelas_task]
-
-    # Unificando os fluxos após o branching
+  
     tabelas_existem_task >> continuar_fluxo_task
     criar_tabelas_task >> continuar_fluxo_task
 
-    # Continuando o fluxo principal
     continuar_fluxo_task >> scraper_task
     scraper_task >> carregar_dim_task >> carregar_fato_task >> finalizar_carregar_dados_task >> fim_task
 
