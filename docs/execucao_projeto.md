@@ -30,7 +30,7 @@ Este documento fornece instruções detalhadas sobre como configurar o ambiente 
 
 ## Execução de Tarefas em Ambiente Isolado
 
-Como o projeto utiliza o Astro CLI que utiliza o Docker por baixo dos panos, o projeto em sí já funciona em uma camada de isolamento não sendo necessário o uso de ambiente virtual.Para tarefas que necessitam de um ambiente isolado, pode-se utilizar o decorator `@task.external_python` ou o `ExternalPythonOperator` do Airflow (O que não foi utilizado no projeto, apenas para informação). Isso permite executar tarefas em um ambiente Python separado, garantindo isolamento para dependências específicas. 
+Como o projeto utiliza o Astro CLI que utiliza o Docker por baixo dos panos, o projeto em sí já funciona em uma camada de isolamento não sendo necessário o uso de ambiente virtual. Para tarefas que necessitam de um ambiente isolado, pode-se utilizar o decorator `@task.external_python` ou o `ExternalPythonOperator` do Airflow (O que não foi utilizado no projeto, apenas para informação). Isso permite executar tarefas em um ambiente Python separado, garantindo isolamento para dependências específicas. 
 
 Exemplos de uso:
 
