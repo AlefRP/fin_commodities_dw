@@ -50,7 +50,7 @@ Exemplos de uso:
   )
   ```
 
-Certifique-se de configurar o caminho correto para o ambiente Python desejado (que deve ser instalado no ambinete docker atualizando-se o `Dockerfile`).
+Certifique-se de configurar o caminho correto para o ambiente Python desejado (que deve ser instalado no ambiente docker atualizando-se o `Dockerfile`).
 
 ## Executando o Projeto
 
