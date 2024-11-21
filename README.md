@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este projeto foi desenvolvido como solução para o desafio de seleção da MERX, envolvendo a criação de um pipeline de ingestão, transformação e armazenamento de dados em um Data Warehouse utilizando Apache Airflow e PostgreSQL. Abaixo estão correlacionados os requisitos do desafio e como foram atendidos pela solução proposta.
+Este projeto foi desenvolvido como solução para o desafio de seleção da MERX, envolvendo a criação de um pipeline de ingestão, transformação e armazenamento de dados em um Data Warehouse utilizando Apache Airflow, Python, Docker, PostgreSQL, as bibliotecas `yfinance`, `requests`, `bs4`, `sqlalchemy` e `pandas`. Abaixo estão correlacionados os requisitos do desafio e como foram atendidos pela solução proposta.
 
 ## Correlacionando o Projeto com o Desafio
 
