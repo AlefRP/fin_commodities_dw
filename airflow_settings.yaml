@@ -1,0 +1,46 @@
+# Configuração do Airflow Settings para desenvolvimento local (Apenas Demonstração)
+
+airflow:
+  connections:
+    # Conexão MySQL para um banco de dados local
+    - conn_id: my_local_mysql
+      conn_type: mysql
+      conn_host: localhost
+      conn_schema: my_database
+      conn_login: root
+      conn_password: 1234
+      conn_port: 3306
+
+    # Conexão PostgreSQL (Outra)
+    - conn_id: postgres_dw_outro
+      conn_type: postgres
+      conn_host: localhost
+      conn_schema: dados_feriados
+      conn_login: postgres
+      conn_password: 1234
+      conn_port: 5435
+
+  pools:
+    # Pool para tarefas de scraping com um limite de 5 tarefas simultâneas
+    - pool_name: scraping_pool
+      pool_slot: 5
+      pool_description: Pool para tarefas de scraping
+
+    # Pool padrão para outros tipos de tarefas
+    - pool_name: default_pool
+      pool_slot: 20
+      pool_description: Pool padrão para tarefas gerais
+
+  variables:
+    # Variáveis para uso nas DAGs
+    - variable_name: mysql_host
+      variable_value: localhost
+
+    - variable_name: mysql_user
+      variable_value: root
+
+    - variable_name: mysql_password
+      variable_value: 1234
+
+    - variable_name: api_key_yahoo_url
+      variable_value: https://finance.yahoo.com/commodities
