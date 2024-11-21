@@ -33,7 +33,8 @@ O comando para iniciar o ambiente é:
   astro dev start
   ```
 
-> **Nota**: Por padrão, o Airflow no Astro CLI utiliza o PostgreSQL como backend e a Metabase opera na porta `5432`, redirecionando para o host. Caso já exista um serviço PostgreSQL ativo no host, será necessário desligá-lo antes de iniciar o Airflow, para evitar conflitos de porta que podem impedir a inicialização do Airflow.
+> **Nota**: Por padrão, o Airflow no Astro CLI utiliza o PostgreSQL como backend e a Metabase opera na porta `5432`, redirecionando para o host. Caso já exista um serviço PostgreSQL ativo no host, será necessário desligá-lo antes de iniciar o Airflow, para evitar conflitos de porta que podem impedir a inicialização do Airflow.  
+> Se você já tentou iniciar o Airflow e encontrou erros relacionados à porta `5432`, desligue o serviço PostgreSQL do host e use o comando `astro dev restart` para reiniciar o ambiente.
 
 - **Servidor PostgreSQL Adicional**: Foi configurado um servidor PostgreSQL adicional, além do banco de metadados do Airflow, para armazenar o Data Warehouse. Este servidor está rodando em uma porta distinta para evitar conflitos.
 
