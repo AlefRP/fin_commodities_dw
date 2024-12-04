@@ -59,6 +59,10 @@ O comando para iniciar o ambiente é:
 
 ## Documentação e Governança
 
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE.md](LICENSE) para mais detalhes.
+
 - [Requisitos do Desafio](docs/requisitos_desafio.md): Detalhes sobre os requisitos do desafio de seleção da MERX.
 - [Governança de Dados](docs/governanca_dados.md): Detalhes sobre as práticas de governança de dados implementadas no projeto, incluindo controle de qualidade, auditoria e segurança.
 - [Execução do Projeto](docs/execucao_projeto.md): Instruções detalhadas sobre como executar o projeto e configurar o ambiente.
