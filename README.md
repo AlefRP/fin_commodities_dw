@@ -1,4 +1,4 @@
-# Projeto MERX - Desafio de Engenheiro de Dados
+# Finance & Commodities DW
 
 ## Introdução
 
